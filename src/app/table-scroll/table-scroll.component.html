@@ -1,1 +1,39 @@
-<p>table-scroll works!</p>
+<div class="table">
+    <div>
+        <div class="table-head">
+            <div class="table-cell" *ngFor="let colName of columns">{{ colName }}</div>
+        </div>
+        <div #tableBody class="table-body" (scroll)="fScroll()">
+            <div class="table-scroll">
+                <div class="table-row" *ngFor="let row of scrolledData">
+                    <div class="table-cell"><button (click)="fSubmit(row)">Submit</button></div>
+                    <div class="table-cell">{{ row.name }}</div>
+                    <div class="table-cell">{{ row.phone }}</div>
+                    <div class="table-cell">{{ row.email }}</div>
+                    <div class="table-cell">{{ row.company }}</div>
+                    <div class="table-cell">{{ row.date_entry }}</div>
+                    <div class="table-cell">{{ row.org_num }}</div>
+                    <div class="table-cell">{{ row.address_1 }}</div>
+                    <div class="table-cell">{{ row.city }}</div>
+                    <div class="table-cell">{{ row.zip }}</div>
+                    <div class="table-cell">{{ row.geo }}</div>
+                    <div class="table-cell">{{ row.pan }}</div>
+                    <div class="table-cell">{{ row.pin }}</div>
+                    <div class="table-cell">{{ row.id }}</div>
+                    <div class="table-cell">{{ row.status }}</div>
+                    <div class="table-cell">{{ row.fee }}</div>
+                    <div class="table-cell">{{ row.guid }}</div>
+                    <div class="table-cell">{{ row.date_exit }}</div>
+                    <div class="table-cell">{{ row.date_first }}</div>
+                    <div class="table-cell">{{ row.date_recent }}</div>
+                    <div class="table-cell">{{ row.url }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="table-footer">
+    <div>
+        <label>Number of rows: </label><input type="number" class="input-row" [(ngModel)]="numRows" />
+    </div>
+</div>

@@ -1,0 +1,59 @@
+.table {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1rem;
+    font-weight: normal;
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+    margin: 10px 0 0;
+    height: 100%;
+    width: 100%;
+    max-width: 1593px;
+    overflow: auto;
+    &-head {
+        display: flex;
+        background-color: lightcoral;
+        font-weight: bold;
+        border: 1px solid gray;
+        padding: 5px;
+        width: 100%;
+    }
+    &-body {
+        display: flex;
+        overflow: auto;
+        background-color: whitesmoke;
+        padding: 5px;
+        width: 100%;
+    }
+    &-footer {
+        display: flex;
+        background-color: lightcoral;
+        border: 1px solid gray;
+        padding: 5px;
+        border-bottom: 2px solid black;
+        border-right: 2px solid black;
+        border-left: 2px solid black;
+        width: calc(100% - 10px);
+        max-width: 1583px;
+    }
+    &-row {
+        display: flex;
+        align-items: flex-start;
+        border-bottom: 1px solid gray;
+    }
+    &-scroll {
+        height: 650px;
+    }
+    &-cell {
+        padding: 2px;
+        word-break: break-word;
+        display: inline-flex;
+        width: 70px;
+    }
+}
+
+.input-row {
+    width: 40px;
+}
