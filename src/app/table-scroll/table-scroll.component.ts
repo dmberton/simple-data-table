@@ -47,6 +47,8 @@ export class TableScrollComponent implements OnInit {
 
   fSubmit(row) {
     console.log(row);
+    // This will error out as the api does not exist but one can see the post is being 
+    // executed in the browser network tab.
     this.urlManager.fPost({ id: row.id, status: row.status }).subscribe();
   }
 
@@ -54,6 +56,7 @@ export class TableScrollComponent implements OnInit {
     const scroll = this.scrollTable.nativeElement.scrollTop;
     const height = this.scrollTable.nativeElement.clientHeight;
     const scrollHeight = this.scrollTable.nativeElement.scrollHeight;
+    // if scrollTop + height = scrollHeight we are at the bottom of the table.
     if (scrollHeight === (scroll + height) && this.scrollRows < this.data.length) {
       this.scrollRows = 2 * this.scrollRows;
       this.scrolledData = this.data.slice(0, this.scrollRows);
