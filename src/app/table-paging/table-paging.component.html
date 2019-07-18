@@ -5,7 +5,7 @@
         </div>
         <div class="table-body">
             <div class="table-scroll">
-                <div class="table-row" *ngFor="let row of data">
+                <div class="table-row" *ngFor="let row of pagedData">
                     <div class="table-cell"><button (click)="fSubmit(row)">Submit</button></div>
                     <div class="table-cell">{{ row.name }}</div>
                     <div class="table-cell">{{ row.phone }}</div>
@@ -34,6 +34,24 @@
 </div>
 <div class="table-footer">
     <div class="">
-        <label>Number of rows</label><input type="text" />
+        <label>Number of rows: </label><input type="number" class="input-row" [(ngModel)]="numRows"
+            (change)="fPage(page)" />
+    </div>
+    <div *ngIf="pagedData && pagedData.length" class="pagination">
+        <span class="page-button" *ngIf=" page !== 1">
+            <a (click)="fPage(1)">First</a>
+        </span>
+        <span class="page-button" *ngIf=" page !== 1">
+            <a (click)="fPage(page - 1)">&laquo;Previous</a>
+        </span>
+        <span>
+            <a (click)="fPage(page)"><input type="number" class="input-row" [(ngModel)]="page" /></a>
+        </span>
+        <span class="page-button" *ngIf=" page !== total">
+            <a (click)="fPage(page + 1)">Next&raquo;</a>
+        </span>
+        <span class="page-button" *ngIf=" page !== total">
+            <a (click)="fPage(total)">Last</a>
+        </span>
     </div>
 </div>

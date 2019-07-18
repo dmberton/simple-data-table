@@ -8,6 +8,7 @@ import { UrlManagerService } from '../service/url-manager.service';
 })
 export class TablePagingComponent implements OnInit {
   data: any[] = [];
+  pagedData: any[] = [];
   columns: string[] = [
     'Action',
     'Name',
@@ -31,16 +32,33 @@ export class TablePagingComponent implements OnInit {
     'Recent date',
     'Url'
   ];
+  numRows = 10;
+  total = 0;
+  page = 1;
 
   constructor(private readonly urlManager: UrlManagerService) { }
 
   ngOnInit() {
     this.data = this.urlManager.fGetJsonData();
-    console.log(this.data);
+    this.fPage(this.page);
   }
 
   fSubmit(row) {
-    this.urlManager.fPost({ id: row.id, status: row.status });
+    console.log(row);
+    this.urlManager.fPost({ id: row.id, status: row.status }).subscribe();
+  }
+
+  fPage(pageNumber: number): void {
+    this.total = Math.ceil(this.data.length / this.numRows);
+    this.page = pageNumber;
+    if (this.page > this.total) {
+      this.page = this.total;
+    } else if (this.page < 1) {
+      this.page = 1;
+    }
+    const start = this.numRows * (this.page - 1);
+    const end = Math.min((start + this.numRows - 1), (this.data.length - 1)) + 1;
+    this.pagedData = this.data.slice(start, end);
   }
 
 }
